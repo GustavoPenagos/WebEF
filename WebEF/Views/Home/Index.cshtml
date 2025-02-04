@@ -1,0 +1,30 @@
+﻿@model WebEF.Models.API.Persona
+@{
+    ViewData["Title"] = "Home Page";
+    int n = 0;
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre y apellido</th>
+            <th scope="col">Tipo dDocumento</th>
+            <th scope="col">Nro documento</th>
+            <th scope="col">Fecha Nacimiento</th>
+            <th scope="col">Estado civil</th>
+            <th scope="col">Valor a Ganar</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th scope="row">@n++</th>
+                <td>@item.n+ @item.apellidos</td>
+                <td></td>
+                <td></td>
+            </tr>
+        }
+    </tbody>
+</table>
