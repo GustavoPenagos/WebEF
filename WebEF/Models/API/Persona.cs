@@ -15,7 +15,7 @@ namespace WebEF.Models.API
 
         public string? EstadoCivil { get; set; }
 
-        public DateTime FechaNacimiento { get; set; }
+        public DateOnly FechaNacimiento { get; set; }
 
         public DateTime Fecha { get; set; } 
 

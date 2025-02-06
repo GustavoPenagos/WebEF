@@ -1,4 +1,4 @@
-﻿@model WebEF.Models.API.Persona
+﻿@model List<WebEF.Models.API.Persona>
 @{
     ViewData["Title"] = "Home Page";
     int n = 0;
@@ -7,12 +7,12 @@
 <table class="table">
     <thead>
         <tr>
-            <th scope="col">#</th>
             <th scope="col">Nombre y apellido</th>
             <th scope="col">Tipo dDocumento</th>
             <th scope="col">Nro documento</th>
             <th scope="col">Fecha Nacimiento</th>
             <th scope="col">Estado civil</th>
+            <th scope="col">Fecha</th>
             <th scope="col">Valor a Ganar</th>
         </tr>
     </thead>
@@ -20,10 +20,16 @@
         @foreach (var item in Model)
         {
             <tr>
-                <th scope="row">@n++</th>
-                <td>@item.n+ @item.apellidos</td>
-                <td></td>
-                <td></td>
+                <td>@item.Nombres @item.Apellidos</td>
+                <td>@item.TipoDocumento</td>
+                <td>@item.NroDocumento</td>
+                <td>@item.EstadoCivil</td>
+                <td>@item.FechaNacimiento</td>
+                <td>@item.Fecha</td>
+                <td>@item.ValorGanar</td>
+                <td>@Html.ActionLink("Editas", "UpdateUser")</td>
+                <td>@Html.ActionLink("Editas", "UpdateUser")</td>
+                <td>@Html.ActionLink("Eliminar", "DeleteUser", new { tipo = item.TipoDocumento, documento = item.NroDocumento })</td>
             </tr>
         }
     </tbody>
