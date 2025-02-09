@@ -1,12 +1,22 @@
 ﻿@model List<WebEF.Models.API.Persona>
 @{
     ViewData["Title"] = "Home Page";
-    int n = 0;
 }
+@using (Html.BeginForm("Index", "Home", FormMethod.Post))
+{
 
-<a href="@Url.ActionLink("SaveUser", "User")">
-    <img src="~/img/person-plus-fill.svg" />
-</a>
+    <a href="@Url.ActionLink("SaveUser", "User")">
+        <img src="~/img/person-plus-fill.svg" style="width: 2%;" />
+    </a>
+    <div class="input-group right" style="width: 30%; margin-left: auto; margin-right: 0;">
+        <div class="input-group-prepend">
+            <span class="input-group-text" id=""># Documento</span>
+        </div>
+        <input type="text" class="form-control" name="Documento">
+        <input type="text" class="form-control" name="Busqueda" value="true" hidden>
+        <button type="submit" class="btn btn-primary">Buscar</button>
+    </div>
+}
 
 <table class="table">
     <thead>
@@ -18,6 +28,7 @@
             <th scope="col">Estado civil</th>
             <th scope="col">Fecha</th>
             <th scope="col">Valor a Ganar</th>
+            <th scope="col" colspan="2">Accion</th>
         </tr>
     </thead>
     <tbody>
@@ -27,8 +38,8 @@
                 <td>@item.Nombres @item.Apellidos</td>
                 <td>@item.TipoDocumento</td>
                 <td>@item.NroDocumento</td>
-                <td>@item.EstadoCivil</td>
                 <td>@item.FechaNacimiento</td>
+                <td>@item.EstadoCivil</td>
                 <td>@item.Fecha</td>
                 <td>@item.ValorGanar</td>
                 <td>@Html.ActionLink("Editar", "Update", "User", new { tipo = item.TipoDocumento, documento = item.NroDocumento })</td>

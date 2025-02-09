@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using WebEF.Models;
 using WebEF.Models.API;
 using WebEF.Repository.IRequest;
 
@@ -9,14 +10,27 @@ namespace WebEF.Controllers
     {
         private readonly IPetition _petition = petition;
         
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(Buscar buscar)
         {
-            var response = await _petition.ClientAsync("Get", "/get/person");
-            if (!string.IsNullOrEmpty(response))
+            string response = string.Empty;
+            if ((!buscar.Busqueda && string.IsNullOrEmpty(buscar.Documento)) || (buscar.Busqueda && string.IsNullOrEmpty(buscar.Documento)))
             {
-                return View(JsonConvert.DeserializeObject<List<Persona>>(response));
+                response = await _petition.ClientAsync("Get", "/get/person");
+                if (!string.IsNullOrEmpty(response))
+                {
+                    return View(JsonConvert.DeserializeObject<List<Persona>>(response));
+                }
+                return RedirectToAction("Error", "Home");
             }
-            return RedirectToAction("Error", "Home");          
+            else
+            {
+                response = await _petition.ClientAsync("Get", "/get/personbyid?documento=" + buscar.Documento);
+                if (!string.IsNullOrEmpty(response))
+                {
+                    return View(JsonConvert.DeserializeObject<List<Persona>>(response));
+                }
+                return RedirectToAction("Error", "Home");
+            }
         }
     }
 }

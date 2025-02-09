@@ -27,17 +27,18 @@
             </div>
             <div class="form-group">
                 <label>Estado civil</label>
-                <select class="form-select" aria-label="Default select example" name="EstadoCivil">
-                    <option style="color:red;">@item.EstadoCivil</option>
+                <select class="form-select" aria-label="Default select example" name="EstadoCivil"> 
                     @foreach (var civil in ViewBag.Civil)
                     {
+                        if (item.EstadoCivil == civil.EstadoCivil1){
+                            <option value="@civil.IdEstadoCivil">@item.EstadoCivil</option>
+                        }
                         <option value="@civil.IdEstadoCivil">@civil.EstadoCivil1</option>
                     }
                 </select>
             </div>
             <div class="form-group">
                 <label>Fecha de nacimiento</label>
-                <input type="date" class="form-control" name="FechaNacimiento" placeholder="@item.FechaNacimiento">
                 <input class="form-control" name="FechaNacimiento" placeholder="Actual = @item.FechaNacimiento" readonly>
             </div>
             <div class="form-group">
