@@ -1,0 +1,55 @@
+﻿@model List<WebEF.Models.API.Persona>;
+
+@using (Html.BeginForm("UpdateUser", "User", FormMethod.Post))
+{
+    @foreach (var item in Model)
+    {
+        <form>
+            <div class="form-group">
+
+                <label>Nombres</label>
+                <input class="form-control" name="Nombres" aria-describedby="emailHelp" placeholder="@item.Nombres">
+            </div>
+            <div class="form-group">
+                <label>Apellidos</label>
+                <input class="form-control" name="Apellidos" placeholder="@item.Apellidos">
+            </div>
+
+            <div class="form-group">
+                <label>Tipo de documento</label>
+                <select class="form-select" aria-label="Default select example" name="TipoDocumento">
+                    <option>@item.TipoDocumento</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Numero de documento</label>
+                <input class="form-control" name="NroDocumento" value="@item.NroDocumento" placeholder="@item.NroDocumento" readonly>
+            </div>
+            <div class="form-group">
+                <label>Estado civil</label>
+                <select class="form-select" aria-label="Default select example" name="EstadoCivil">
+                    <option style="color:red;">@item.EstadoCivil</option>
+                    @foreach (var civil in ViewBag.Civil)
+                    {
+                        <option value="@civil.IdEstadoCivil">@civil.EstadoCivil1</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Fecha de nacimiento</label>
+                <input type="date" class="form-control" name="FechaNacimiento" placeholder="@item.FechaNacimiento">
+                <input class="form-control" name="FechaNacimiento" placeholder="Actual = @item.FechaNacimiento" readonly>
+            </div>
+            <div class="form-group">
+                <label>Valor a ganar</label>
+                <input class="form-control" name="ValorGanar" placeholder="@item.ValorGanar">
+            </div>
+            <div class="form-group">
+                <label>Fecha</label>
+                <input class="form-control" value="@DateTime.Now" name="Fecha" placeholder="Actual = @item.Fecha" readonly>
+            </div>
+            <br />
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    }
+}

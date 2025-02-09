@@ -4,6 +4,10 @@
     int n = 0;
 }
 
+<a href="@Url.ActionLink("SaveUser", "User")">
+    <img src="~/img/person-plus-fill.svg" />
+</a>
+
 <table class="table">
     <thead>
         <tr>
@@ -27,9 +31,8 @@
                 <td>@item.FechaNacimiento</td>
                 <td>@item.Fecha</td>
                 <td>@item.ValorGanar</td>
-                <td>@Html.ActionLink("Editas", "UpdateUser")</td>
-                <td>@Html.ActionLink("Editas", "UpdateUser")</td>
-                <td>@Html.ActionLink("Eliminar", "DeleteUser", new { tipo = item.TipoDocumento, documento = item.NroDocumento })</td>
+                <td>@Html.ActionLink("Editar", "Update", "User", new { tipo = item.TipoDocumento, documento = item.NroDocumento })</td>
+                <td>@Html.ActionLink("Eliminar", "Delete", "User", new { tipo = item.TipoDocumento, documento = item.NroDocumento })</td>
             </tr>
         }
     </tbody>
